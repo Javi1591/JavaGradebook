@@ -1,66 +1,38 @@
-# Java GradeBook Project – Final Application
+# COP2251 – Java Assignments 14 & 15 (JavaFX GradeBook)
 
-A Java console application that simulates a **GradeBook system**, allowing users to manage student names, scores, and calculate averages.  
-This project demonstrates modular object-oriented design, integration between multiple classes, and core concepts such as arrays, encapsulation, and input handling.
+## Summary
+This JavaFX GradeBook application demonstrates building a desktop UI to enter and analyze course grades. It uses a grid-based layout with labeled inputs for possible points and earned points across multiple activities, computes per-section averages, and displays a final course percentage. The project emphasizes GUI construction, input parsing, formatted output, and modular JavaFX setup.
 
----
+## Program Behavior
+- Launches a JavaFX window with a grid containing rows for course activities (for example: Assignments, Review Quizzes, Coding Quizzes, Project, Mid Term Exam, Final Exam).
+- Each row provides “Current Points” (possible points) and “Your Points” (earned points) text fields.
+- A “Final Percentage” field displays the computed overall grade using aggregated section values.
+- A `ChoiceBox` (week selector) allows loading preset values for specific weeks; changing the selection refreshes the grid via `loadTheGrid(...)`.
+- Input fields are made editable or read-only as appropriate, and text input is parsed defensively (invalid or blank values are treated as zero via `parseOrZero`).
+- Values are formatted using `DecimalFormat` for clean percentage display.
 
-## Project Overview
-
-### Description
-The GradeBook program allows users to enter and process student grades for a course.  
-It uses two primary classes:  
-- **GradeBook_Start.java** – defines the GradeBook logic and encapsulates data management.  
-- **Main.java** – acts as the program driver, handling user interaction, input/output, and control flow.  
-
-The application stores student names and grades, calculates averages, and displays formatted results.  
-It demonstrates the integration of multiple Java programming principles into a cohesive, functional application.
-
----
-
-## Features
-- Allows entry of student names and their corresponding grades.  
-- Calculates the average score across all students.  
-- Uses arrays or array-like structures to store data.  
-- Validates user input and handles exceptions gracefully.  
-- Displays formatted output of student data and calculated results.  
-- Demonstrates clean separation between business logic (GradeBook) and application control (Main).  
-
----
-
-## Learning Objectives
-- Apply **object-oriented programming** principles using multiple classes.  
-- Reinforce concepts of **encapsulation** and **data abstraction**.  
-- Use **arrays** and **loops** for storing and processing multiple data points.  
-- Implement modular design with method-based organization.  
-- Practice **exception handling** and **input validation** in Java applications.  
-
----
-
-## Program Structure
-1. **GradeBook Class**  
-   - Encapsulates arrays or lists for student names and grades.  
-   - Provides methods for adding data, computing averages, and displaying results.  
-   - Uses private fields with accessor and mutator methods where necessary.
-
-2. **Main Class**  
-   - Contains the `main()` method to start program execution.  
-   - Manages user input through the console.  
-   - Calls GradeBook methods to perform calculations and present results.  
-
-3. **Output Phase**  
-   - Displays student names, individual scores, and overall class average.  
-   - Provides a clear and formatted output for readability.  
-
----
+## Key Concepts Demonstrated
+- JavaFX UI: Stage/Scene setup, `GridPane` layout, alignment, padding, and spacing.
+- Controls and Events: `Label`, `TextField`, `ChoiceBox`, `Button`, and `EventHandler<ActionEvent>` for interactive behavior.
+- Data Handling: Input parsing with `Double.parseDouble`, defensive fallbacks, and average/final percentage calculations.
+- Formatting: Displaying computed values with `DecimalFormat`.
+- Modularity: `module-info.java` declaring JavaFX modules and `opens application` for JavaFX access.
 
 ## How to Compile and Run
+Requirements:
+- Java Development Kit (JDK) 17 or later
+- JavaFX SDK (matching your JDK)
+- Command line terminal or IDE (IntelliJ IDEA, Eclipse, or VS Code) with JavaFX module path configured
 
-### Requirements
-- Java Development Kit (JDK) 17 or newer  
-- A Java-compatible IDE (IntelliJ IDEA, VS Code, Eclipse) or terminal environment
+Commands (from the `nazario14and15/src` directory):
 
-### Command Line Instructions
-```bash
-javac GradeBook_Start.java Main.java
-java Main
+Compile:
+javac --module-path "<path_to_javafx_lib>" --add-modules javafx.controls -d ../out module-info.java application/GradeBook_Start.java application/Main.java
+
+Run (GradeBook application):
+java --module-path "<path_to_javafx_lib>" --add-modules javafx.controls -cp ../out application.GradeBook_Start
+
+Run (template Main, optional):
+java --module-path "<path_to_javafx_lib>" --add-modules javafx.controls -cp ../out application.Main
+
+(Replace `<path_to_javafx_lib>` with the absolute path to your JavaFX SDK `lib` directory, e.g., on Windows `C:\javafx-sdk-22\lib`, or on macOS/Linux `/opt/javafx-sdk-22/lib`.)
