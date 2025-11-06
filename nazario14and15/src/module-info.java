@@ -1,0 +1,5 @@
+module nazario14and15 {
+	requires javafx.controls;
+	
+	opens application to javafx.graphics, javafx.fxml;
+}
